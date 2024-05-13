@@ -10,3 +10,8 @@ if (mysqli_query($conn, $sql)) {
 } else {
     echo "Some Thing is Error";
 }
+
+// ========================user========
+if ($_SESSION['user_role'] == 0) {
+    header("Location: http://localhost:84/mysite/php/CMS/admin/post.php");
+}

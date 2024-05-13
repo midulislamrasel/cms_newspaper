@@ -33,6 +33,14 @@ if (isset($_POST['save'])) {
 };
 
 
+
+
+// ================user 
+if ($_SESSION['user_role'] == 0) {
+    header("Location: http://localhost:84/mysite/php/CMS/admin/post.php");
+}
+
+
 ?>
 
 
