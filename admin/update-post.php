@@ -18,6 +18,7 @@ if ($_SESSION['user_role'] == 0) {
             <div class="col-md-offset-3 col-md-6">
 
                 <?php
+                $post_id = $_GET['id'];
 
                 $sql = "SELECT * FROM post
                     LEFT JOIN category ON post.category = category.category_id
@@ -32,9 +33,9 @@ if ($_SESSION['user_role'] == 0) {
                 ?>
 
                         <!-- Form for show edit-->
-                        <form action="" method="POST" enctype="multipart/form-data" autocomplete="off">
+                        <form action="save-update.php" method="POST" enctype="multipart/form-data" autocomplete="off">
                             <div class="form-group">
-                                <input type="hidden" name="post_id" class="form-control" value="<?php echo $row['post.id']; ?>" placeholder="">
+                                <input type="hidden" name="post_id" class="form-control" value="<?php echo $row['post_id']; ?>" placeholder="">
                             </div>
 
                             <div class="form-group">
@@ -58,7 +59,13 @@ if ($_SESSION['user_role'] == 0) {
                                     if (mysqli_num_rows($result1) > 0) {
                                         while ($row1 = mysqli_fetch_assoc($result1)) {
 
-                                            echo "<option value='{$row1['category_id']}'> {$row1['category_name']}</option>";
+                                            if ($row['category'] == $row1['category_id']) {
+                                                $selected = "selected";
+                                            } else {
+                                                $selected = "";
+                                            }
+
+                                            echo "<option {$selected} value='{$row1['category_id']}'> {$row1['category_name']}</option>";
                                         }
                                     }
 
@@ -68,8 +75,9 @@ if ($_SESSION['user_role'] == 0) {
                             <div class="form-group">
                                 <label for="">Post image</label>
                                 <input type="file" name="new-image">
-                                <img src="upload/<?php echo $row1['post_img']; ?>" height="150px">
-                                <!-- <input type="hidden" name="old-image" value=""> -->
+                                <?php echo $row['post_img']; ?>
+                                <img src="upload/<?php echo $row['post_img']; ?>" height="150px">
+                                <input type="hidden" name="old_image" value="<?php echo $row['post_img'] ?>">
                             </div>
                             <input type="submit" name="submit" class="btn btn-primary" value="Update" />
                         </form>
