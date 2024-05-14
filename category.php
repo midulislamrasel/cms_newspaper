@@ -69,7 +69,9 @@ include './database/dbconfig.php'
                                                 <span>
                                                     <i class="fa fa-user" aria-hidden="true"></i>
                                                     <a href='author.php'>
-                                                        <?php echo $row['username']; ?>
+                                                        <a href='author.php?aid=<?php echo $row['author']; ?>'>
+                                                            <?php echo $row['username']; ?>
+                                                        </a>
                                                     </a>
                                                 </span>
                                                 <span>

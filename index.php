@@ -53,7 +53,7 @@ include './database/dbconfig.php'
                                                 </span>
                                                 <span>
                                                     <i class="fa fa-user" aria-hidden="true"></i>
-                                                    <a href='author.php'>
+                                                    <a href='author.php?aid=<?php echo $row['author']; ?>'>
                                                         <?php echo $row['username']; ?>
                                                     </a>
                                                 </span>
